@@ -1,6 +1,6 @@
 
 #Import the libraries
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 
 import jinja2
 
@@ -18,7 +18,7 @@ app = Flask(__name__)
 #Routing of the page 
 @app.route('/')
 def home():
-    return render_template('index.html', genres = genre)
+    return render_template('index.html', genres = genre, no_input=False)
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend():
@@ -29,15 +29,18 @@ def recommend():
         artist = request.form.get('artist')
         genre = request.form.get('genre')
 
-        track_id = search.search_tracks(track)
-        artist_id = search.search_artist(artist)
+        if not track or not artist or not genre:
+            return redirect(url_for("home", no_input = True))
+        else:
 
-        playlist = recommender.recommend_tracks(artist_id, track_id, genre)
-        songs = [ song["name"] for song in playlist]
-        artists = [ song["artist"] for song in playlist]
+            track_id = search.search_tracks(track)
+            artist_id = search.search_artist(artist)
 
+            playlist = recommender.recommend_tracks(artist_id, track_id, genre)
+            songs = [ song["name"] for song in playlist]
+            artists = [ song["artist"] for song in playlist]
 
-    return render_template('playlist.html', playlist=playlist)
+            return render_template('playlist.html', playlist=playlist)
 
 
 #Run!
