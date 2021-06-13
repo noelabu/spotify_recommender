@@ -29,12 +29,26 @@
                             {% for song in playlist %}
                                 <article>
                                     <a href={{song.external_urls}} class="image">
-                                        <img src={{song.img}} alt="" />
+                                        <img src={{song.img}} alt="" onmouseover="PlaySound('{{song.preview_url}}')" onmouseout="StopSound('{{song.preview_url}}')" />
                                     </a>
                                     <div class="caption">
                                         <h3>{{song.name}}</h3>
                                         <p>{{song.artist}}</p>
                                     </div>
+									<audio id={{song.preview_url}} src={{song.preview_url}} />
+
+									<script>
+										function PlaySound(soundobj) {
+											var thissound=document.getElementById(soundobj);
+											thissound.play();
+										}
+									
+										function StopSound(soundobj) {
+											var thissound=document.getElementById(soundobj);
+											thissound.pause();
+											thissound.currentTime = 0;
+										}
+									</script>
                                 </article>
                             {% endfor %}
                         </div>
@@ -70,4 +84,7 @@
 			<script src="../static/js/main.js"></script>
 
 	</body>
+
+
+
 </html>
