@@ -47,6 +47,28 @@ class SpotifySearch():
         genres = ["genres"][:4]
 
         return id
+    
+    def search_song_and_artist(self, song, artist_id):
+        data = {
+            'q' : song,
+            'type': "track"
+        }
+        spotify_search = requests.get(self.url, headers=self.headers, params=data)
+        report = spotify_search.json()
+
+        items = report["tracks"]["items"]
+        track = {}
+        for song in items:
+            song_artist = song["artists"][0]["id"]
+            if song_artist == artist_id:
+                track["name"] = song["name"]
+                track["artist"] = song["artists"][0]["name"]
+                track["artist_name"] = song["artists"][0]["name"]
+                track["preview_url"] = song["preview_url"]
+                track["external_urls"] = song["external_urls"]["spotify"]
+                track["img"] = song["album"]["images"][0]["url"]
+        
+        return track
 
 
 

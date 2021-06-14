@@ -3,9 +3,11 @@ import json
 import base64
 
 from authorization import Authorization
+from search import SpotifySearch
 
 Auth = Authorization()
 access_token = Auth.refresh_token_auth()
+search = SpotifySearch()
 
 class SpotifyRecommend():
 
@@ -17,7 +19,7 @@ class SpotifyRecommend():
             'Authorization': 'Bearer '+access_token
         }
     
-    def recommend_tracks(self, artist_id, track_id, genre):
+    def recommend_tracks(self, song, artist_id, track_id, genre):
         data = {
             'seed_artists' : artist_id,
             'seed_tracks' :  track_id,
@@ -28,9 +30,11 @@ class SpotifyRecommend():
         report = spotify_playlist.json()
         
         playlist = []
+        searched_song = search.search_song_and_artist(song, artist_id)
+        playlist.append(searched_song)
         items = report["tracks"]
 
-        for i in range(8):
+        for i in range(10):
             song = {}
             song["name"] = items[i]["name"]
             song["artist"] = items[i]["artists"][0]["name"]
