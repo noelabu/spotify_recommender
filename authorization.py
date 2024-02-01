@@ -2,14 +2,16 @@ import requests
 import json
 import base64
 
+from decouple import config
+
 class Authorization():
 
     def __init__(self):
-        self.url = "https://accounts.spotify.com/api/token"
-        self.client_id = "de83c9b1a975453093613f4b131d8255"
-        self.client_secret = "191725626ab040958700c96d43fc164f"
+        self.url = config('SPOTIFY_URL_TOKEN')
+        self.client_id = config('SPOTIFY_CLIENT_ID')
+        self.client_secret = config('SPOTIFY_CLIENT_SECRET')
         self.auth_header = base64.urlsafe_b64encode((self.client_id + ':' + self.client_secret).encode('ascii'))
-        self.refresh_token = 'AQDlcGE1D5BbZYPo9qYwqDwbnTSIyPqjjzLSpgHw-nOFzam8uNlsIcgiA-5LilTB0rUUZD9_TRlE6NQq6h2bUbTNS5ApnlfrRedwkTDi9F6PlYllNAerlUj33byrqO_hKDk'
+        self.refresh_token = config('SPOTIFY_REFRESH_TOKEN')
     
     def refresh_token_auth(self):
         data = {

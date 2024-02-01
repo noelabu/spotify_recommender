@@ -1,3 +1,5 @@
+import pytest
+from app import app
 
 from authorization import Authorization
 from search import SpotifySearch

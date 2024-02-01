@@ -22,8 +22,11 @@
 						<div class="content">
 							<h1>Spotify Recommender</h1>
 							<p>A Spotify Tracks Recommender that uses the Spotify Recommender API to recommend songs based on your favorite songs, genre, and artists</p>
-							<form method="post" action="/recommend">
+							<form name="song_input" method="post" action="/recommend">
 								
+								{% if no_input == True %}
+								    <p style="color:red;" id="error">All input is required. </p>
+								{% endif %}
 								<div class="song_title">
 									<input type="text" name="track" id="track" placeholder="Enter your song:" />
 								</div>
@@ -59,11 +62,9 @@
 					<footer class="wrapper style1 align-center">
 						<div class="inner">
 							<ul class="icons">
-								<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+								
+								<li><a href="https://www.linkedin.com/in/noela-bunag/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="mailto:njsbunag@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
 							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 						</div>
@@ -79,6 +80,7 @@
 			<script src="../static/js/breakpoints.min.js"></script>
 			<script src="../static/js/util.js"></script>
 			<script src="../static/js/main.js"></script>
+			
 
 	</body>
 </html>

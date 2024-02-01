@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    command: python app.py
+    ports:
+      - "5005:5005"
+    volumes:
+      - .:/SPOTIFY_RECOMMENDER/
+    env_file: .env
