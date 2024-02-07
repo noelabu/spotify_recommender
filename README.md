@@ -47,9 +47,9 @@ pip install -r requirements.txt
 To use the Spotify API, you need to create a Spotify Developer account and register your application. Obtain the client ID and client secret, and update the .env with your credentials.
 
 ```
-SPOTIPY_CLIENT_ID = 'your_client_id'
-SPOTIPY_CLIENT_SECRET = 'your_client_secret'
-SPOTIPY_REFRESH_TOKEN = 'your_refresh_token'
+SPOTIFY_CLIENT_ID = 'your_client_id'
+SPOTIFY_CLIENT_SECRET = 'your_client_secret'
+SPOTIFY_REFRESH_TOKEN = 'your_refresh_token'
 ```
 
 ## Running SPOTIFY_RECOMMENDER
@@ -67,7 +67,7 @@ Requirements
 
 3. Start the container using `docker compose up`.
 
-4. Access the application ar http://localhost:5005/
+4. Access the application at http://localhost:5005/
 
 > The code will live-reload in the container. You can watch the log with `docker compose logs -f`. If you need to change dependencies, you can rebuild with `docker compose build`.
 
@@ -77,7 +77,7 @@ Requirements
 
 2. To start the application, run flask in the virtual environment with `python app.py`.
 
-3. Access the application ar http://localhost:5005/
+3. Access the application at http://localhost:5005/
 
 ### How to Use
 1. Open the web application.
@@ -97,8 +97,5 @@ Requirements
 
 ### Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests.
-
-### License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 Happy discovering new music! 🎶
